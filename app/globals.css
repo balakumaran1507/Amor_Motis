@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Archivo:wdth,wght@62.5..125,100..900&family=Oswald:wght@200..700&family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+/* ===================================
+   CUSTOM FONT : ADIEU (STRICT)
+   =================================== */
+
+/* 🔒 Adieu font – MUST exist in /public/fonts */
+@font-face {
+  font-family: 'Adieu';
+  src: url('/fonts/Adieu-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+  /* ⬅ prevents fallback flash */
+}
+
+/* ===================================
+   DESIGN TOKENS
+   =================================== */
+
+:root {
+  --background: #f9ecf3;
+  --foreground: #000000;
+  --primary: #1a1a1a;
+  --secondary: #6b6b6b;
+  --accent: #d4af37;
+  --accent-hover: #b8941f;
+
+  --border: #e5e5e5;
+  --card-bg: #ffffff;
+
+  /* Fonts */
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-display: 'Archivo', sans-serif;
+
+  /* 🔒 STRICT ADIEU – NO FALLBACK CHANGE */
+  --font-navbar: 'Adieu', sans-serif;
+}
+
+/* ===================================
+   NAVBAR FONT (ADIEU ONLY)
+   =================================== */
+
+.font-adieu {
+  font-family: var(--font-navbar) !important;
+  /* ⬅ force usage */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hover effect */
+.font-adieu a {
+  transition: color 300ms ease;
+}
+
+.font-adieu a:hover {
+  color: var(--accent);
+}
+
+/* ===================================
+   LAYOUT
+   =================================== */
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+/* ===================================
+   SCROLLBAR
+   =================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6b6b6b;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
