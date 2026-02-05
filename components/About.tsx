@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 /* TARGET DATE */
@@ -24,36 +23,27 @@ const getTimeRemaining = () => {
     };
 };
 
-/* TIME CARD (NO BOX, NO FRAME IMAGE) */
+/* TIME CARD */
 const TimeCard = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center relative w-14 h-20 md:w-32 md:h-44">
+    <div className="flex flex-col items-center mx-4 md:mx-8">
         <motion.span
             key={value}
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="text-xl md:text-5xl font-bold text-neutral-800 font-adieu relative z-10 mt-5 md:mt-12"
+            animate={{ y: [5, 0], opacity: [0.5, 1] }}
+            transition={{ duration: 0.3 }}
+            className="text-6xl md:text-9xl font-bold text-[#AA8D6F] font-adieu leading-none"
         >
             {String(value).padStart(2, "0")}
         </motion.span>
 
-        <span className="mt-2 md:mt-10 text-[8px] md:text-sm tracking-widest text-neutral-600 uppercase font-adieu">
+        <span className="mt-4 text-xs md:text-sm tracking-[0.3em] text-[#AA8D6F]/60 uppercase font-adieu">
             {label}
         </span>
     </div>
 );
 
-
 /* ABOUT SECTION */
 const About = () => {
     const [time, setTime] = useState(getTimeRemaining());
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -66,42 +56,41 @@ const About = () => {
     return (
         <section
             id="about"
-            className="relative h-[140vh] w-full flex items-center justify-center overflow-hidden"
+            className="relative min-h-[50vh] w-full flex flex-col items-center justify-center py-20 overflow-hidden"
             style={{ background: "#f9ecf3" }}
         >
-            {/* BACKGROUND IMAGE */}
-            <motion.div
-                className="absolute z-0"
-                style={{
-                    scale: isMobile ? 1.18 : 1.25,
-                    y: isMobile ? 50 : 100
-                }}
+            {/* DECORATIVE TITLE */}
+            <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-[#AA8D6F] text-sm md:text-base font-adieu tracking-[0.4em] uppercase mb-16 opacity-80"
             >
-                <Image
-                    src="/timeframe.png"
-                    alt="Time frame decoration"
-                    width={900}
-                    height={600}
-                    priority
-                    className={isMobile ? "w-[95vw] h-auto object-contain" : "w-[900px] h-auto object-contain"}
-                />
-            </motion.div>
+                The Event Begins In
+            </motion.h2>
 
             {/* COUNTDOWN */}
-            <motion.div
-                className="relative z-10"
-                style={{
-                    x: 0,
-                    y: -15,
-                }}
-            >
-                <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                    <TimeCard value={time.days} label="DAYS" />
-                    <TimeCard value={time.hours} label="HOURS" />
-                    <TimeCard value={time.minutes} label="MINUTES" />
-                    <TimeCard value={time.seconds} label="SECONDS" />
+            <div className="relative z-10 w-full">
+                <div className="flex flex-wrap justify-center items-center">
+                    <TimeCard value={time.days} label="Days" />
+
+                    <span className="hidden md:block text-4xl md:text-6xl text-[#AA8D6F]/30 font-adieu mx-4 pb-12">:</span>
+
+                    <TimeCard value={time.hours} label="Hours" />
+
+                    <span className="hidden md:block text-4xl md:text-6xl text-[#AA8D6F]/30 font-adieu mx-4 pb-12">:</span>
+
+                    <TimeCard value={time.minutes} label="Mins" />
+
+                    <span className="hidden md:block text-4xl md:text-6xl text-[#AA8D6F]/30 font-adieu mx-4 pb-12">:</span>
+
+                    <TimeCard value={time.seconds} label="Secs" />
                 </div>
-            </motion.div>
+            </div>
+
+            {/* BOTTOM DECORATION */}
+            <div className="mt-20 w-[1px] h-32 bg-gradient-to-b from-[#AA8D6F] to-transparent opacity-30"></div>
+
         </section>
     );
 };
