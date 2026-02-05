@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useScroll } from "framer-motion";
 import Image from "next/image";
 
 const Hero = () => {
@@ -121,24 +121,29 @@ const Hero = () => {
     const textOpacity = useTransform(progress, [0, 0.8, 1], [0, 0, 1]);
     const textY = useTransform(progress, [0, 1], [40, 0]);
 
+    /* ---------------- PARALLAX SCROLL ---------------- */
+    const { scrollY } = useScroll();
+    const parallaxY = useTransform(scrollY, [0, 300, 1300], [0, 0, 700]); // Delayed start, then moves down
+    const centerImageY = useTransform(parallaxY, (v) => `calc(-50% + ${v}px)`);
+
     /* ---------------- JSX ---------------- */
 
     return (
         <section
             ref={containerRef}
             id="home"
-            className="relative h-screen bg-[#F6EBEB]"
+            className="relative h-[250vh] bg-[#F6EBEB]"
         >
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
                 {/* CENTER IMAGE */}
                 <motion.div
-                    className="absolute z-0"
+                    className="absolute z-10"
                     style={{
                         left: "50%",
                         top: isMobile ? "50%" : "52%",
                         translateX: "-50%",
-                        translateY: "-50%",
+                        y: centerImageY,
                         scale: centerScale,
                     }}
                 >
@@ -153,9 +158,8 @@ const Hero = () => {
                     />
                 </motion.div>
 
-                {/* LEFT IMAGE */}
                 <motion.div
-                    className="absolute z-10"
+                    className="absolute z-20"
                     style={{
                         left: isMobile ? "50%" : "36%",
                         top: isMobile ? "50%" : "63.5%",
@@ -177,9 +181,8 @@ const Hero = () => {
                     />
                 </motion.div>
 
-                {/* RIGHT IMAGE */}
                 <motion.div
-                    className="absolute z-10"
+                    className="absolute z-20"
                     style={{
                         right: isMobile ? "auto" : "41%",
                         left: isMobile ? "50%" : "auto",
@@ -204,28 +207,28 @@ const Hero = () => {
 
                 {/* HERO TEXT */}
                 <motion.div
-                    className="relative z-20 text-center px-6"
+                    className="relative z-0 text-center px-6"
                     style={{ opacity: textOpacity, y: textY }}
                 >
                     <h1 className="text-3xl md:text-7xl lg:text-8xl font-bold font-adieu tracking-[0.22em] uppercase text-[#AA8D6F]">
                         AMOR MORTIS
                     </h1>
                     <p className="text-sm md:text-lg font-medium text-[#AA8D6F] font-adieu tracking-[0.3em] uppercase mt-6">
-                        A Valatines day CTF
+                        Love Until it kills you
                     </p>
+
                 </motion.div>
 
                 {/* --- BLUR METRICS & LAYERS (JOINING SEAM FOCUS) --- */}
 
                 {/* Layer 1: Seam Atmosphere (Low Intensity, Wider) */}
-                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#f9ecf3] to-transparent z-10 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-[#f9ecf3] to-transparent z-30 pointer-events-none" />
 
                 {/* Layer 2: Seam Softener (Mid Intensity, Focused) */}
-                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#f9ecf3] via-[#f9ecf3]/90 to-transparent z-20 pointer-events-none backdrop-blur-[2px]" />
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#f9ecf3] via-[#f9ecf3]/90 to-transparent z-40 pointer-events-none backdrop-blur-[2px]" />
 
                 {/* Layer 3: Seam Lock (High Intensity, Strict Joint) */}
-                <div className="absolute bottom-0 left-0 w-full h-16 bg-[#f9ecf3] z-30 pointer-events-none" />
-
+                <div className="absolute bottom-0 left-0 w-full h-16 bg-[#f9ecf3] z-50 pointer-events-none" />
 
             </div>
         </section>
