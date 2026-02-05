@@ -41,14 +41,14 @@ const Footer = () => {
 
                 {/* CONTACT CARD (Right Side) */}
                 <div className="col-span-1 md:col-span-6 flex justify-start md:justify-end">
-                    <div className="w-full md:w-[400px] h-[200px] bg-[#AA8D6F] text-[#f9ecf3] p-8 flex flex-col justify-between items-start rounded-sm shadow-xl">
+                    <div className="w-full md:w-[400px] h-[200px] bg-[#1a1a1a] text-[#AA8D6F] p-8 flex flex-col justify-between items-start rounded-sm shadow-xl">
                         <div className="w-full flex justify-between items-start">
                             <span className="uppercase text-sm tracking-widest opacity-80">Get in touch</span>
-                            <span className="w-2 h-2 bg-[#f9ecf3] rounded-full animate-pulse"></span>
+                            <span className="w-2 h-2 bg-[#AA8D6F] rounded-full animate-pulse"></span>
                         </div>
 
                         <div className="text-2xl font-bold tracking-wider">
-                            Contact Us <span className="text-[#f9ecf3]/60">•</span>
+                            Contact Us <span className="text-[#AA8D6F]/60">•</span>
                         </div>
 
                         <div className="text-sm uppercase tracking-widest opacity-80 mt-auto">
