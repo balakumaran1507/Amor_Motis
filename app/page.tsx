@@ -10,6 +10,9 @@ const Gallery = dynamic(() => import("@/components/Gallery"), {
   loading: () => <div className="h-screen w-full bg-[#f9ecf3]" />,
 });
 
+const Footer = dynamic(() => import("@/components/Footer"), {
+  loading: () => <div className="h-64 w-full bg-[#f9ecf3]" />,
+});
 
 export const metadata = {
   title: "AMOR MOTIS",
@@ -30,7 +33,7 @@ export default function Home() {
       <Hero />
       <About />
       <Gallery />
-
+      <Footer />
     </main>
   );
 }
