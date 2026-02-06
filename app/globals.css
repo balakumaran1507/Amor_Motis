@@ -90,6 +90,17 @@
   border-radius: 5px;
 }
 
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* ===================================
+   CURSIVE FONT (PINYON SCRIPT)
+   =================================== */
+
+.font-pinyon {
+  font-family: var(--font-pinyon), cursive !important;
+  font-weight: 400;
+  /* Usually script fonts don't need uppercase, but respecting user text */
 }

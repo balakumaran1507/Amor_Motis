@@ -13,48 +13,52 @@ const Hero = () => {
     const raf = useRef<number | null>(null);
 
     /* ---------------- HELPERS ---------------- */
-    const clamp = (v: number, min = 0, max = 1) =>
-        Math.min(Math.max(v, min), max);
+
 
     /* ---------------- PHYSICS LOOP ---------------- */
-    const startRAF = () => {
-        if (raf.current !== null) return;
 
-        let lastTime = performance.now();
 
-        const loop = (time: number) => {
-            const deltaTime = Math.min((time - lastTime) / 16.67, 2);
-            lastTime = time;
+    /* ---------------- SCROLL CONTROL ---------------- */
+    useEffect(() => {
+        const clamp = (v: number, min = 0, max = 1) =>
+            Math.min(Math.max(v, min), max);
 
-            let p = progress.get();
-            let v = velocity.current;
+        const startRAF = () => {
+            if (raf.current !== null) return;
 
-            p += v * deltaTime;
+            let lastTime = performance.now();
 
-            if ((p <= 0 && v < 0) || (p >= 1 && v > 0)) {
-                v *= 0.4;
-            }
+            const loop = (time: number) => {
+                const deltaTime = Math.min((time - lastTime) / 16.67, 2);
+                lastTime = time;
 
-            p = clamp(p);
-            v *= Math.pow(0.92, deltaTime);
+                let p = progress.get();
+                let v = velocity.current;
 
-            progress.set(p);
-            velocity.current = v;
+                p += v * deltaTime;
 
-            if (Math.abs(v) < 0.00002) {
-                velocity.current = 0;
-                raf.current = null;
-                return;
-            }
+                if ((p <= 0 && v < 0) || (p >= 1 && v > 0)) {
+                    v *= 0.4;
+                }
+
+                p = clamp(p);
+                v *= Math.pow(0.92, deltaTime);
+
+                progress.set(p);
+                velocity.current = v;
+
+                if (Math.abs(v) < 0.00002) {
+                    velocity.current = 0;
+                    raf.current = null;
+                    return;
+                }
+
+                raf.current = requestAnimationFrame(loop);
+            };
 
             raf.current = requestAnimationFrame(loop);
         };
 
-        raf.current = requestAnimationFrame(loop);
-    };
-
-    /* ---------------- SCROLL CONTROL ---------------- */
-    useEffect(() => {
         const lockScroll = () => {
             document.body.style.overflow = "hidden";
         };

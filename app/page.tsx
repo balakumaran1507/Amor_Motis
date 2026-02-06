@@ -3,10 +3,15 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 
 // Dynamic imports for performance (below the fold)
-const About = dynamic(() => import("@/components/About"), {
+// Dynamic imports for performance (below the fold)
+const Presence = dynamic(() => import("@/components/Presence"), {
   loading: () => <div className="h-screen w-full bg-[#f9ecf3]" />,
 });
-const Gallery = dynamic(() => import("@/components/Gallery"), {
+const RegistrationTimer = dynamic(() => import("@/components/RegistrationTimer"), {
+  loading: () => <div className="h-screen w-full bg-[#f9ecf3]" />,
+});
+
+const Stages = dynamic(() => import("@/components/Stages"), {
   loading: () => <div className="h-screen w-full bg-[#f9ecf3]" />,
 });
 
@@ -31,8 +36,10 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <Hero />
-      <About />
-      <Gallery />
+      <Presence />
+      <RegistrationTimer />
+
+      <Stages />
       <Footer />
     </main>
   );

@@ -2,11 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
 
 const Footer = () => {
     return (
-        <footer className="relative w-full bg-[#fffdfe] text-[#AA8D6F] px-6 pt-20 pb-10 overflow-hidden font-adieu">
+        <footer id="footer" className="relative w-full bg-[#fffdfe] text-[#AA8D6F] px-6 pt-20 pb-10 overflow-hidden font-adieu">
 
             {/* TOP SECTION: COLUMNS */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 max-w-[1400px] mx-auto">
@@ -67,6 +67,20 @@ const Footer = () => {
                                 </Link>
                             </div>
                         </li>
+                        <li>
+                            <div className="flex flex-col">
+                                <Link href="#" className="cursor-pointer hover:opacity-70 transition-opacity uppercase leading-none">
+                                    Etherence
+                                </Link>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="flex flex-col">
+                                <Link href="#" className="cursor-pointer hover:opacity-70 transition-opacity uppercase leading-none">
+                                    DEDSEC X01
+                                </Link>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
@@ -112,7 +126,10 @@ const Footer = () => {
                     AMOR VINCIT OMNIA
                 </div>
 
-                <p>Authored By DEDSEC X01</p>
+                <div className="flex flex-col md:items-end gap-1 text-center md:text-right">
+                    <p>Authored By DEDSEC X01</p>
+                    <span className="text-[10px] tracking-wider opacity-60">Powered by Etherence</span>
+                </div>
             </div>
 
         </footer>

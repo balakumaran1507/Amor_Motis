@@ -72,7 +72,7 @@ const Contact = () => {
                         Get In <span className="gradient-text">Touch</span>
                     </h2>
                     <p className="text-lg text-[var(--secondary)] max-w-2xl mx-auto">
-                        Have any questions? Send us a message and we'll get back to you within 12 hours
+                        Have any questions? Send us a message and we&apos;ll get back to you within 12 hours
                     </p>
                 </motion.div>
 
@@ -168,7 +168,7 @@ const Contact = () => {
                                 </div>
                                 <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
                                 <p className="text-[var(--secondary)]">
-                                    We'll get back to you within 12 hours
+                                    We&apos;ll get back to you within 12 hours
                                 </p>
                             </motion.div>
                         ) : (
