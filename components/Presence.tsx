@@ -34,17 +34,29 @@ const Presence = () => {
                 {/* Large decorative roses - Top Left */}
                 <motion.div
                     style={{ rotate: floralRotate, scale: floralScale }}
-                    className="absolute -top-20 -left-20 w-[400px] h-[400px] md:w-[600px] md:h-[600px]"
+                    className="absolute -top-10 -left-10 w-[50vw] h-[50vw] md:-top-20 md:-left-20 md:w-[600px] md:h-[600px]"
                 >
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain opacity-40" />
+                    <Image
+                        src="/roses_cluster.png"
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-contain opacity-40"
+                    />
                 </motion.div>
 
                 {/* Large decorative roses - Bottom Right */}
                 <motion.div
                     style={{ rotate: useTransform(floralRotate, v => -v), scale: floralScale }}
-                    className="absolute -bottom-20 -right-20 w-[400px] h-[400px] md:w-[600px] md:h-[600px]"
+                    className="absolute -bottom-10 -right-10 w-[50vw] h-[50vw] md:-bottom-20 md:-right-20 md:w-[600px] md:h-[600px]"
                 >
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain opacity-40 rotate-180" />
+                    <Image
+                        src="/roses_cluster.png"
+                        alt=""
+                        fill
+                        sizes="(max-width: 768px) 50vw, 33vw"
+                        className="object-contain opacity-40 rotate-180"
+                    />
                 </motion.div>
 
                 {/* Floating petals */}
@@ -95,25 +107,23 @@ const Presence = () => {
                 {/* CYBERCOM - Split into two lines */}
                 <div className="flex flex-col items-center mb-4 leading-none relative z-20">
                     {/* CYBER */}
-                    <div className="overflow-hidden">
+                    <div className="">
                         <motion.h2
-                            initial={{ y: 100, opacity: 0, rotateX: 20 }}
-                            whileInView={{ y: 0, opacity: 1, rotateX: 0 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }} // smooth easeOut
-                            className="text-[#AA8D6F] text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            initial={{ y: 20, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+                            className="text-[#AA8D6F] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
                         >
                             {"CYBER".split("").map((letter, i) => (
                                 <motion.span
                                     key={i}
-                                    initial={{ filter: "blur(20px)", opacity: 0, y: 50, rotateX: 45 }}
-                                    whileInView={{ filter: "blur(0px)", opacity: 1, y: 0, rotateX: 0 }}
-                                    viewport={{ once: true, amount: 0.3 }}
+                                    initial={{ filter: "blur(5px)", opacity: 0, y: 10 }}
+                                    whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
                                     transition={{
-                                        duration: 0.8,
-                                        delay: 0.1 + i * 0.07,
-                                        type: "spring",
-                                        damping: 15
+                                        duration: 0.5,
+                                        delay: 0.1 + i * 0.05,
                                     }}
                                     className="inline-block"
                                 >
@@ -124,25 +134,23 @@ const Presence = () => {
                     </div>
 
                     {/* COM */}
-                    <div className="overflow-hidden">
+                    <div className="">
                         <motion.h2
-                            initial={{ y: 100, opacity: 0 }}
+                            initial={{ y: 20, opacity: 0 }}
                             whileInView={{ y: 0, opacity: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[#AA8D6F] text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                            className="text-[#AA8D6F] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
                         >
                             {"COM".split("").map((letter, i) => (
                                 <motion.span
                                     key={i}
-                                    initial={{ filter: "blur(20px)", opacity: 0, y: 50, rotateX: 45 }}
-                                    whileInView={{ filter: "blur(0px)", opacity: 1, y: 0, rotateX: 0 }}
-                                    viewport={{ once: true, amount: 0.3 }}
+                                    initial={{ filter: "blur(5px)", opacity: 0, y: 10 }}
+                                    whileInView={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
                                     transition={{
-                                        duration: 0.8,
-                                        delay: 0.5 + i * 0.07,
-                                        type: "spring",
-                                        damping: 15
+                                        duration: 0.5,
+                                        delay: 0.2 + i * 0.05,
                                     }}
                                     className="inline-block"
                                 >

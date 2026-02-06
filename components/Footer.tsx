@@ -6,10 +6,10 @@ import Link from "next/link";
 
 const Footer = () => {
     return (
-        <footer id="footer" className="relative w-full bg-[#fffdfe] text-[#AA8D6F] px-6 pt-20 pb-10 overflow-hidden font-adieu">
+        <footer id="footer" className="relative w-full bg-[#fffdfe] text-[#AA8D6F] px-6 pt-10 md:pt-20 pb-10 overflow-hidden font-adieu">
 
             {/* TOP SECTION: COLUMNS */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-20 max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 mb-10 md:mb-20 max-w-[1400px] mx-auto">
 
                 {/* SITE INDEX (2 COLS) */}
                 <div className="col-span-1 md:col-span-2">

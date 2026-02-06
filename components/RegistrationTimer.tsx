@@ -27,10 +27,21 @@ const RegistrationTimer = () => {
     const rosesY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
     const [particles, setParticles] = useState<{ id: number; duration: number; delay: number; left: number; top: number }[]>([]);
+    const [isMobile, setIsMobile] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setParticles(Array.from({ length: 20 }).map((_, i) => ({
+        const particleCount = window.innerWidth < 768 ? 8 : 20;
+        setParticles(Array.from({ length: particleCount }).map((_, i) => ({
             id: i,
             duration: 10 + Math.random() * 10,
             delay: Math.random() * 5,
@@ -85,7 +96,7 @@ const RegistrationTimer = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={isTitleInView ? { opacity: 1, scale: 1 } : {}}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="text-[#c17c8e] text-5xl md:text-7xl lg:text-8xl font-normal tracking-wide mb-4 drop-shadow-sm select-none w-full break-words"
+                            className="text-[#c17c8e] text-4xl md:text-7xl lg:text-8xl font-normal tracking-wide mb-4 drop-shadow-sm select-none w-full break-words"
                             style={{ fontFamily: 'var(--font-pinyon), cursive' }}
                         >
                             Amor.Mortis
@@ -127,16 +138,41 @@ const RegistrationTimer = () => {
                         </motion.div>
 
                         {/* Timer */}
-                        <div className="flex items-start justify-center flex-wrap gap-2 md:gap-0 z-20 relative p-4 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30">
-                            <FlipClockCountdown
-                                to={TARGET_DATE}
-                                labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
-                                labelStyle={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', color: '#AA8D6F', letterSpacing: '0.2em', fontFamily: 'var(--font-adieu)', marginTop: 10 }}
-                                digitBlockStyle={{ width: 50, height: 75, fontSize: 40, color: '#AA8D6F', backgroundColor: 'white', fontWeight: 'bold', borderRadius: 12, boxShadow: '0 4px 12px rgba(193, 124, 142, 0.15)' }}
-                                dividerStyle={{ color: '#E5D4C9', height: 1 }}
-                                separatorStyle={{ color: '#c17c8e', size: '6px' }}
-                                duration={0.5}
-                            />
+                        <div className="flex items-start justify-center flex-nowrap z-20 relative p-4 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 w-full max-w-full overflow-x-auto md:overflow-visible no-scrollbar">
+                            {mounted ? (
+                                <FlipClockCountdown
+                                    to={TARGET_DATE}
+                                    labels={['DAYS', 'HOURS', 'MINUTES', 'SECONDS']}
+                                    labelStyle={{
+                                        fontSize: isMobile ? 8 : 10,
+                                        fontWeight: 700,
+                                        textTransform: 'uppercase',
+                                        color: '#AA8D6F',
+                                        letterSpacing: isMobile ? '0.1em' : '0.2em',
+                                        fontFamily: 'var(--font-adieu)',
+                                        marginTop: 10
+                                    }}
+                                    digitBlockStyle={{
+                                        width: isMobile ? 30 : 50,
+                                        height: isMobile ? 45 : 75,
+                                        fontSize: isMobile ? 24 : 40,
+                                        color: '#AA8D6F',
+                                        backgroundColor: 'white',
+                                        fontWeight: 'bold',
+                                        fontFamily: 'var(--font-adieu)',
+                                        border: '1px solid rgba(170, 141, 111, 0.3)',
+                                        borderRadius: '0.5rem'
+                                    }}
+                                    dividerStyle={{ color: '#AA8D6F', height: 1 }}
+                                    separatorStyle={{ color: '#AA8D6F', size: 4 }}
+                                    duration={0.5}
+                                />
+                            ) : (
+                                <div className="flex gap-4 items-center justify-center opacity-0" style={{ height: isMobile ? 75 : 105 }}>
+                                    {/* Placeholder to prevent layout shift */}
+                                    Loading Timer...
+                                </div>
+                            )}
                         </div>
 
                         {/* Date */}

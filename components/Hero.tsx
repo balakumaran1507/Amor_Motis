@@ -18,8 +18,20 @@ const Hero = () => {
     /* ---------------- PHYSICS LOOP ---------------- */
 
 
+    /* ---------------- RESPONSIVE STATE ---------------- */
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     /* ---------------- SCROLL CONTROL ---------------- */
     useEffect(() => {
+        if (isMobile) return; // Disable custom scroll physics on mobile
+
         const clamp = (v: number, min = 0, max = 1) =>
             Math.min(Math.max(v, min), max);
 
@@ -99,17 +111,9 @@ const Hero = () => {
             window.removeEventListener("wheel", onWheel);
             if (raf.current) cancelAnimationFrame(raf.current);
         };
-    }, [progress]);
+    }, [progress, isMobile]);
 
-    /* ---------------- RESPONSIVE STATE ---------------- */
-    const [isMobile, setIsMobile] = React.useState(false);
 
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
-    }, []);
 
     /* ---------------- ANIMATION TRANSFORMS ---------------- */
 
@@ -136,7 +140,7 @@ const Hero = () => {
         <section
             ref={containerRef}
             id="home"
-            className="relative h-[250vh] bg-[#F6EBEB]"
+            className="relative h-[180vh] md:h-[250vh] bg-[#F6EBEB]"
         >
             <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
 
@@ -214,10 +218,10 @@ const Hero = () => {
                     className="relative z-0 text-center px-6"
                     style={{ opacity: textOpacity, y: textY }}
                 >
-                    <h1 className="text-3xl md:text-7xl lg:text-8xl font-bold font-adieu tracking-[0.22em] uppercase text-[#AA8D6F]">
+                    <h1 className="text-2xl sm:text-3xl md:text-7xl lg:text-8xl font-bold font-adieu tracking-[0.15em] md:tracking-[0.22em] uppercase text-[#AA8D6F]">
                         AMOR MORTIS
                     </h1>
-                    <p className="text-sm md:text-lg font-medium text-[#AA8D6F] font-adieu tracking-[0.3em] uppercase mt-6">
+                    <p className="text-xs sm:text-sm md:text-lg font-medium text-[#AA8D6F] font-adieu tracking-[0.2em] md:tracking-[0.3em] uppercase mt-4 md:mt-6">
                         Love Until it kills you
                     </p>
 

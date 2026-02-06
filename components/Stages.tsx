@@ -60,7 +60,7 @@ const Stages = () => {
     return (
         <section
             id="stages"
-            className="relative h-[140vh] w-full flex items-center justify-center overflow-hidden scroll-mt-48"
+            className="relative min-h-[85vh] h-auto md:h-[140vh] w-full flex items-center justify-center overflow-hidden scroll-mt-48 pb-20 md:pb-0"
             style={{ backgroundColor: "#f9ecf3" }}
         >
             {/* --- TOP SEAM BLUR (Connected to Hero) --- */}
@@ -76,7 +76,7 @@ const Stages = () => {
 
             {/* SECTION TITLE */}
             <div
-                className="absolute top-10 z-40 text-center"
+                className="absolute top-10 md:top-10 z-40 text-center w-full px-4"
             >
                 <h2 className="text-4xl md:text-8xl font-bold font-adieu text-[#AA8D6F] mb-4">
                     7 Stages
@@ -112,7 +112,7 @@ const Stages = () => {
                 animate={{
                     x: isMobile ? -160 : -570,
                     scale: isMobile ? 1.2 : 2.5,
-                    y: isMobile ? 470 : 190,
+                    y: isMobile ? 300 : 190,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -132,7 +132,7 @@ const Stages = () => {
                 animate={{
                     x: isMobile ? 160 : 570,
                     scale: isMobile ? 1.2 : 2.5,
-                    y: isMobile ? 470 : 190,
+                    y: isMobile ? 300 : 190,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -151,7 +151,7 @@ const Stages = () => {
                 className="relative z-20"
                 animate={{
                     scale: isMobile ? 0.6 : 0.92,
-                    y: isMobile ? 430 : 75,
+                    y: isMobile ? 250 : 75,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -170,7 +170,7 @@ const Stages = () => {
                 className="absolute z-30"
                 animate={{
                     scale: isMobile ? 1.3 : 1.5,
-                    y: isMobile ? 590 : 470,
+                    y: isMobile ? 400 : 470,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -189,7 +189,7 @@ const Stages = () => {
                 animate={{
                     scale: isMobile ? 1.3 : 1.5,
                     x: isMobile ? -100 : -350,
-                    y: isMobile ? 590 : 490,
+                    y: isMobile ? 400 : 490,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -208,7 +208,7 @@ const Stages = () => {
                 animate={{
                     scale: isMobile ? 1.3 : 1.5,
                     x: isMobile ? 100 : 350,
-                    y: isMobile ? 590 : 490,
+                    y: isMobile ? 400 : 490,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -225,7 +225,7 @@ const Stages = () => {
 
 
             {/* RESTORED FOOTER */}
-            <div className="absolute bottom-10 w-full flex flex-col items-center justify-center z-40 text-center">
+            <div className="absolute bottom-10 md:bottom-10 w-full flex flex-col items-center justify-center z-40 text-center">
                 <h2 className="font-adieu font-bold text-[#AA8D6F] text-5xl md:text-9xl leading-none tracking-tighter opacity-90 mb-4">
                     CYBERCOM
                 </h2>
