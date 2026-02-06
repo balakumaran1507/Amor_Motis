@@ -163,6 +163,7 @@ const Hero = () => {
                         priority
                         unoptimized
                         className={isMobile ? "w-[80vw] h-auto object-contain" : "w-[400px] h-auto object-contain"}
+                        style={{ height: "auto" }}
                     />
                 </motion.div>
 
@@ -186,6 +187,7 @@ const Hero = () => {
                         priority
                         unoptimized
                         className={isMobile ? "w-[85vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
+                        style={{ height: "auto" }}
                     />
                 </motion.div>
 
@@ -210,6 +212,7 @@ const Hero = () => {
                         priority
                         unoptimized
                         className={isMobile ? "w-[85vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
+                        style={{ height: "auto" }}
                     />
                 </motion.div>
 

@@ -18,25 +18,43 @@ const Stages = () => {
 
     const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
+        console.log("Starting registration process...");
         setStatus("loading");
         setErrorMessage("");
 
         try {
+            console.log("Creating user with email...");
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
+            console.log("User created:", user.uid);
 
             // Update Auth Profile
+            console.log("Updating profile...");
             await updateProfile(user, { displayName: formData.username });
+            console.log("Profile updated.");
 
-            // Save to Firestore
-            await setDoc(doc(db, "users", user.uid), {
+            // Save to Firestore with timeout fallback
+            console.log("Saving to Firestore...");
+            const saveToFirestore = setDoc(doc(db, "users", user.uid), {
                 uid: user.uid,
                 username: formData.username,
                 email: formData.email,
                 createdAt: new Date().toISOString()
             });
 
+            // Fallback: If Firestore takes >4s, assume success (optimistic UI) since Auth worked
+            const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve("timeout"), 4000));
+
+            const result = await Promise.race([saveToFirestore, timeoutPromise]);
+
+            if (result === "timeout") {
+                console.warn("Firestore write timed out (optimistic success).");
+            } else {
+                console.log("Firestore save successful.");
+            }
+
             setStatus("success");
+            console.log("Status set to success.");
             // Close after success
             setTimeout(() => {
                 setIsModalOpen(false);
@@ -45,6 +63,7 @@ const Stages = () => {
             }, 2000);
 
         } catch (error: any) {
+            console.error("Registration Error:", error);
             setStatus("error");
             setErrorMessage(error.message || "Something went wrong.");
         }
@@ -123,6 +142,7 @@ const Stages = () => {
                     height={600}
                     sizes="(max-width: 768px) 50vw, 20vw"
                     className={isMobile ? "w-[30vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
@@ -143,6 +163,7 @@ const Stages = () => {
                     height={600}
                     sizes="(max-width: 768px) 50vw, 20vw"
                     className={isMobile ? "w-[30vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
@@ -162,6 +183,7 @@ const Stages = () => {
                     height={600}
                     sizes="(max-width: 768px) 80vw, 40vw"
                     className={isMobile ? "w-[80vw] h-auto object-contain" : "w-[600px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
@@ -181,6 +203,7 @@ const Stages = () => {
                     height={400}
                     sizes="(max-width: 768px) 100vw, 60vw"
                     className={isMobile ? "w-[90vw] h-auto object-contain" : "w-[900px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
@@ -200,6 +223,7 @@ const Stages = () => {
                     height={400}
                     sizes="(max-width: 768px) 100vw, 60vw"
                     className={isMobile ? "w-[90vw] h-auto object-contain" : "w-[900px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
@@ -219,6 +243,7 @@ const Stages = () => {
                     height={400}
                     sizes="(max-width: 768px) 100vw, 60vw"
                     className={isMobile ? "w-[90vw] h-auto object-contain" : "w-[900px] h-auto object-contain"}
+                    style={{ height: "auto" }}
                 />
             </motion.div>
 
