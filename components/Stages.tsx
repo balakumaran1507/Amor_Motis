@@ -112,6 +112,12 @@ const Stages = () => {
                         <span className="text-[#AA8D6F] text-[10px]">✦</span>
                     </div>
 
+                    <h2 className="font-adieu text-5xl md:text-8xl text-[#AA8D6F] font-bold tracking-tight leading-none flex items-center gap-4 md:gap-8">
+                        <span className="opacity-40 text-3xl md:text-5xl"></span>
+                        7 STAGES
+                        <span className="opacity-40 text-3xl md:text-5xl"></span>
+                    </h2>
+
                     <div className="flex items-center gap-3 opacity-80">
                         <div className="w-8 md:w-12 h-px bg-[#AA8D6F]" />
                         <p className="font-adieu text-[10px] md:text-sm text-[#AA8D6F] tracking-[0.3em] uppercase">
