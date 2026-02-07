@@ -95,32 +95,51 @@ const Stages = () => {
 
             {/* SECTION TITLE */}
             <div
-                className="absolute top-10 md:top-10 z-40 text-center w-full px-4"
+                className="absolute top-4 md:top-8 z-40 flex flex-col items-center text-center w-full px-4"
             >
-                <h2 className="text-4xl md:text-8xl font-bold font-adieu text-[#AA8D6F] mb-4">
-                    7 Stages
-                </h2>
-                <p className="text-lg md:text-2xl font-adieu text-[#AA8D6F] tracking-widest">
-                    Love, until you die
-                </p>
+                {/* TITLE SECTION - LOVELY & CURLY THEME */}
+                {/* TITLE SECTION - VARIATION WITH ✦ & LINES */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="flex flex-col items-center space-y-4"
+                >
+                    {/* Top Connector */}
+                    <div className="flex flex-col items-center gap-2 opacity-60">
+                        <div className="w-px h-8 bg-[#AA8D6F]" />
+                        <span className="text-[#AA8D6F] text-[10px]">✦</span>
+                    </div>
 
-                {/* JOIN NOW BUTTON WITH IMAGE BG */}
+                    <h2 className="font-adieu text-5xl md:text-8xl text-[#AA8D6F] font-bold tracking-tight leading-none flex items-center gap-4 md:gap-8">
+                        <span className="opacity-40 text-3xl md:text-5xl">✦</span>
+                        7 STAGES
+                        <span className="opacity-40 text-3xl md:text-5xl">✦</span>
+                    </h2>
+
+                    <div className="flex items-center gap-3 opacity-80">
+                        <div className="w-8 md:w-12 h-px bg-[#AA8D6F]" />
+                        <p className="font-adieu text-[10px] md:text-sm text-[#AA8D6F] tracking-[0.3em] uppercase">
+                            Love, until you die
+                        </p>
+                        <div className="w-8 md:w-12 h-px bg-[#AA8D6F]" />
+                    </div>
+                </motion.div>
+
+                {/* BUTTON - PROFESSIONAL & ELEGANT WITH ICON */}
                 <motion.button
                     onClick={() => setIsModalOpen(true)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-8 relative overflow-hidden rounded-full shadow-lg"
-                    style={{
-                        width: isMobile ? "200px" : "260px",
-                        height: isMobile ? "60px" : "72px",
-                        backgroundImage: "url('/button.jpg')",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="mt-10 group relative px-10 py-4 overflow-hidden rounded-full border border-[#AA8D6F] transition-all duration-300"
                 >
-                    <span className="relative z-10 font-adieu font-bold text-sm md:text-lg tracking-widest text-[#f9ecf3]">
-                        JOIN NOW
+                    {/* Background Slide Effect */}
+                    <div className="absolute inset-0 w-full h-full bg-[#AA8D6F] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+
+                    <span className="relative z-10 flex items-center gap-4 font-adieu text-[#AA8D6F] group-hover:text-[#f9ecf3] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">
+                        <span className="text-sm">✦</span>
+                        Register Now
                     </span>
                 </motion.button>
             </div>
@@ -217,7 +236,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/cloud.png"
+                    src="/cloud.webp"
                     alt="Cloud"
                     width={900}
                     height={400}
@@ -237,7 +256,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/cloud.png"
+                    src="/cloud.webp"
                     alt="Cloud"
                     width={900}
                     height={400}

@@ -15,10 +15,15 @@ const Footer = () => {
                 <div className="col-span-1 md:col-span-2">
                     <h3 className="text-sm uppercase tracking-widest mb-6 opacity-60">Site Index</h3>
                     <ul className="space-y-3 text-lg md:text-xl font-medium tracking-wide">
-                        {["Home", "About", "Gallery", "Leaderboard"].map((item) => (
-                            <li key={item}>
-                                <Link href={`#${item.toLowerCase()}`} className="cursor-pointer hover:opacity-70 transition-opacity uppercase">
-                                    {item}
+                        {[
+                            { name: "Home", href: "#home" },
+                            { name: "Presence", href: "#presence" },
+                            { name: "Countdown", href: "#register" },
+                            { name: "Registrations", href: "#stages" }
+                        ].map((item) => (
+                            <li key={item.name}>
+                                <Link href={item.href} className="cursor-pointer hover:opacity-70 transition-opacity uppercase">
+                                    {item.name}
                                 </Link>
                             </li>
                         ))}
