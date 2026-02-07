@@ -37,7 +37,7 @@ const Presence = () => {
                     className="absolute -top-10 -left-10 w-[50vw] h-[50vw] md:-top-20 md:-left-20 md:w-[600px] md:h-[600px]"
                 >
                     <Image
-                        src="/roses_cluster.png"
+                        src="/roses_cluster.webp"
                         alt=""
                         fill
                         sizes="(max-width: 768px) 50vw, 33vw"

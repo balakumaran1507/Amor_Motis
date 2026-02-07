@@ -156,7 +156,7 @@ const Hero = () => {
                     }}
                 >
                     <Image
-                        src="/image3.png"
+                        src="/image3.webp"
                         alt="Center visual"
                         width={400}
                         height={700}
@@ -180,7 +180,7 @@ const Hero = () => {
                     }}
                 >
                     <Image
-                        src="/image1.png"
+                        src="/image1.webp"
                         alt="Left visual"
                         width={500}
                         height={800}
@@ -205,7 +205,7 @@ const Hero = () => {
                     }}
                 >
                     <Image
-                        src="/image2.png"
+                        src="/image2.webp"
                         alt="Right visual"
                         width={500}
                         height={800}

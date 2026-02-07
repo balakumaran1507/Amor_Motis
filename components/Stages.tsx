@@ -136,7 +136,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/pillar.png"
+                    src="/pillar.webp"
                     alt="Pillar back"
                     width={220}
                     height={600}
@@ -157,7 +157,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/pillar1.png"
+                    src="/pillar1.webp"
                     alt="Pillar1 back"
                     width={220}
                     height={600}
@@ -177,7 +177,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/tree.png"
+                    src="/tree.webp"
                     alt="Tree"
                     width={600}
                     height={600}
@@ -197,7 +197,7 @@ const Stages = () => {
                 transition={{ duration: 0.5 }}
             >
                 <Image
-                    src="/cloud.png"
+                    src="/cloud.webp"
                     alt="Cloud"
                     width={900}
                     height={400}

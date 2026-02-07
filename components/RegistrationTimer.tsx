@@ -61,16 +61,16 @@ const RegistrationTimer = () => {
             {/* Animated background roses */}
             <motion.div style={{ y: rosesY }} className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-10 left-5 w-32 h-32 md:w-48 md:h-48 opacity-30">
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain" />
+                    <Image src="/roses_cluster.webp" alt="" fill className="object-contain" />
                 </div>
                 <div className="absolute top-1/4 right-10 w-40 h-40 md:w-56 md:h-56 opacity-25 rotate-45">
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain" />
+                    <Image src="/roses_cluster.webp" alt="" fill className="object-contain" />
                 </div>
                 <div className="absolute bottom-20 left-10 w-36 h-36 md:w-52 md:h-52 opacity-30 -rotate-12">
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain" />
+                    <Image src="/roses_cluster.webp" alt="" fill className="object-contain" />
                 </div>
                 <div className="absolute bottom-1/3 right-5 w-28 h-28 md:w-44 md:h-44 opacity-25 rotate-180">
-                    <Image src="/roses_cluster.png" alt="" fill className="object-contain" />
+                    <Image src="/roses_cluster.webp" alt="" fill className="object-contain" />
                 </div>
             </motion.div>
 
