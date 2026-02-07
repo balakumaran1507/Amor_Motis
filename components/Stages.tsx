@@ -106,16 +106,8 @@ const Stages = () => {
                     transition={{ duration: 0.8 }}
                     className="flex flex-col items-center space-y-4"
                 >
-                    {/* Top Connector */}
-                    <div className="flex flex-col items-center gap-2 opacity-60">
-                        <div className="w-px h-8 bg-[#AA8D6F]" />
-                        <span className="text-[#AA8D6F] text-[10px]">✦</span>
-                    </div>
-
-                    <h2 className="font-adieu text-5xl md:text-8xl text-[#AA8D6F] font-bold tracking-tight leading-none flex items-center gap-4 md:gap-8">
-                        <span className="opacity-40 text-3xl md:text-5xl">✦</span>
+                    <h2 className="font-adieu text-5xl md:text-8xl text-[#AA8D6F] font-bold tracking-tight leading-none">
                         7 STAGES
-                        <span className="opacity-40 text-3xl md:text-5xl">✦</span>
                     </h2>
 
                     <div className="flex items-center gap-3 opacity-80">
@@ -127,19 +119,25 @@ const Stages = () => {
                     </div>
                 </motion.div>
 
-                {/* BUTTON - PROFESSIONAL & ELEGANT WITH ICON */}
+                {/* BUTTON - SPICED UP */}
                 <motion.button
                     onClick={() => setIsModalOpen(true)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="mt-10 group relative px-10 py-4 overflow-hidden rounded-full border border-[#AA8D6F] transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-10 group relative px-10 py-4 overflow-hidden rounded-full border border-[#AA8D6F] transition-all duration-300 hover:shadow-[0_0_20px_rgba(170,141,111,0.4)]"
                 >
-                    {/* Background Slide Effect */}
-                    <div className="absolute inset-0 w-full h-full bg-[#AA8D6F] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
+                    {/* Background Slide Effect (Diagonal) */}
+                    <div className="absolute inset-0 w-[200%] h-full bg-[#AA8D6F] translate-y-full px-12 group-hover:translate-y-0 group-hover:-translate-x-[20%] transition-transform duration-500 ease-out origin-bottom-left -rotate-12" />
 
-                    <span className="relative z-10 flex items-center gap-4 font-adieu text-[#AA8D6F] group-hover:text-[#f9ecf3] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">
-                        <span className="text-sm">✦</span>
-                        Register Now
+                    {/* Shimmer overlay - Safety implementation */}
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
+
+                    <span className="relative z-10 flex items-center gap-3 font-adieu text-[#AA8D6F] group-hover:text-[#f9ecf3] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">
+                        Register
+                        {/* Animated Arrow */}
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
                     </span>
                 </motion.button>
             </div>
