@@ -79,7 +79,7 @@ const Stages = () => {
     return (
         <section
             id="stages"
-            className="relative min-h-[85vh] h-auto md:h-[140vh] w-full flex items-center justify-center overflow-hidden scroll-mt-48 pb-20 md:pb-0"
+            className="relative min-h-[70vh] md:min-h-[85vh] h-auto md:h-[140vh] w-full flex items-center justify-center overflow-hidden scroll-mt-48 pb-20 md:pb-0"
             style={{ backgroundColor: "#f9ecf3" }}
         >
             {/* --- TOP SEAM BLUR (Connected to Hero) --- */}
@@ -112,16 +112,14 @@ const Stages = () => {
                         <span className="text-[#AA8D6F] text-[10px]">✦</span>
                     </div>
 
-                    <h2 className="font-adieu text-5xl md:text-8xl text-[#AA8D6F] font-bold tracking-tight leading-none flex items-center gap-4 md:gap-8">
-                        <span className="opacity-40 text-3xl md:text-5xl"></span>
-                        7 STAGES
-                        <span className="opacity-40 text-3xl md:text-5xl"></span>
+                    <h2 className="font-adieu text-xl md:text-5xl text-[#AA8D6F] font-bold tracking-tight leading-none text-center max-w-[90vw]">
+                        Where love becomes legendary,
                     </h2>
 
                     <div className="flex items-center gap-3 opacity-80">
                         <div className="w-8 md:w-12 h-px bg-[#AA8D6F]" />
-                        <p className="font-adieu text-[10px] md:text-sm text-[#AA8D6F] tracking-[0.3em] uppercase">
-                            Love, until you die
+                        <p className="font-adieu text-[10px] md:text-sm text-[#AA8D6F] tracking-[0.3em] uppercase whitespace-nowrap">
+                            hearts must dare to bleed.
                         </p>
                         <div className="w-8 md:w-12 h-px bg-[#AA8D6F]" />
                     </div>
@@ -146,11 +144,11 @@ const Stages = () => {
 
             {/* PILLAR LEFT */}
             <motion.div
-                className="absolute z-5"
+                className="hidden md:block absolute z-5"
                 animate={{
-                    x: isMobile ? -160 : -570,
-                    scale: isMobile ? 1.2 : 2.5,
-                    y: isMobile ? 300 : 190,
+                    x: isMobile ? -140 : -570,
+                    scale: isMobile ? 1.0 : 2.5,
+                    y: isMobile ? 250 : 190,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -160,18 +158,18 @@ const Stages = () => {
                     width={220}
                     height={600}
                     sizes="(max-width: 768px) 50vw, 20vw"
-                    className={isMobile ? "w-[30vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
+                    className={isMobile ? "w-[25vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
                     style={{ height: "auto" }}
                 />
             </motion.div>
 
             {/* PILLAR RIGHT */}
             <motion.div
-                className="absolute z-5"
+                className="hidden md:block absolute z-5"
                 animate={{
-                    x: isMobile ? 160 : 570,
-                    scale: isMobile ? 1.2 : 2.5,
-                    y: isMobile ? 300 : 190,
+                    x: isMobile ? 140 : 570,
+                    scale: isMobile ? 1.0 : 2.5,
+                    y: isMobile ? 250 : 190,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -181,7 +179,7 @@ const Stages = () => {
                     width={220}
                     height={600}
                     sizes="(max-width: 768px) 50vw, 20vw"
-                    className={isMobile ? "w-[30vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
+                    className={isMobile ? "w-[25vw] h-auto object-contain" : "w-[220px] h-auto object-contain"}
                     style={{ height: "auto" }}
                 />
             </motion.div>
@@ -190,8 +188,8 @@ const Stages = () => {
             <motion.div
                 className="relative z-20"
                 animate={{
-                    scale: isMobile ? 0.6 : 0.92,
-                    y: isMobile ? 250 : 75,
+                    scale: isMobile ? 0.45 : 0.92,
+                    y: isMobile ? 180 : 75,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -201,7 +199,7 @@ const Stages = () => {
                     width={600}
                     height={600}
                     sizes="(max-width: 768px) 80vw, 40vw"
-                    className={isMobile ? "w-[80vw] h-auto object-contain" : "w-[600px] h-auto object-contain"}
+                    className={isMobile ? "w-[70vw] h-auto object-contain" : "w-[600px] h-auto object-contain"}
                     style={{ height: "auto" }}
                 />
             </motion.div>
@@ -210,8 +208,8 @@ const Stages = () => {
             <motion.div
                 className="absolute z-30"
                 animate={{
-                    scale: isMobile ? 1.3 : 1.5,
-                    y: isMobile ? 400 : 470,
+                    scale: isMobile ? 1.4 : 1.5,
+                    y: isMobile ? 320 : 470,
                 }}
                 transition={{ duration: 0.5 }}
             >
@@ -269,12 +267,12 @@ const Stages = () => {
 
 
             {/* RESTORED FOOTER */}
-            <div className="absolute bottom-10 md:bottom-10 w-full flex flex-col items-center justify-center z-40 text-center">
-                <h2 className="font-adieu font-bold text-[#AA8D6F] text-5xl md:text-9xl leading-none tracking-tighter opacity-90 mb-4">
+            <div className="absolute bottom-6 md:bottom-10 w-full flex flex-col items-center justify-center z-40 text-center px-4">
+                <h2 className="font-adieu font-bold text-[#AA8D6F] text-3xl md:text-9xl leading-none tracking-tighter opacity-90 mb-4 w-full break-words">
                     CYBERCOM
                 </h2>
 
-                <p className="font-adieu text-[#AA8D6F] text-xs md:text-sm tracking-widest flex items-center gap-2">
+                <p className="font-adieu text-[#AA8D6F] text-[10px] md:text-sm tracking-widest flex flex-wrap justify-center items-center gap-2">
                     MADE WITH LOVE , WITH
 
                     {/* HEART SVG */}

@@ -9,12 +9,12 @@ const Footer = () => {
         <footer id="footer" className="relative w-full bg-[#fffdfe] text-[#AA8D6F] px-6 pt-10 md:pt-20 pb-10 overflow-hidden font-adieu">
 
             {/* TOP SECTION: COLUMNS */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 mb-10 md:mb-20 max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-10 mb-10 md:mb-20 max-w-[1400px] mx-auto">
 
                 {/* SITE INDEX (2 COLS) */}
                 <div className="col-span-1 md:col-span-2">
                     <h3 className="text-sm uppercase tracking-widest mb-6 opacity-60">Site Index</h3>
-                    <ul className="space-y-3 text-lg md:text-xl font-medium tracking-wide">
+                    <ul className="space-y-3 text-sm md:text-xl font-medium tracking-wide">
                         {[
                             { name: "Home", href: "#home" },
                             { name: "Presence", href: "#presence" },
@@ -33,7 +33,7 @@ const Footer = () => {
                 {/* SOCIALS (2 COLS) */}
                 <div className="col-span-1 md:col-span-2">
                     <h3 className="text-sm uppercase tracking-widest mb-6 opacity-60">Social</h3>
-                    <ul className="space-y-4 text-lg md:text-xl font-medium tracking-wide">
+                    <ul className="space-y-4 text-sm md:text-xl font-medium tracking-wide">
                         <li>
                             <div className="flex flex-col">
                                 <Link href="https://instagram.com/cybercom.live" target="_blank" className="cursor-pointer hover:opacity-70 transition-opacity uppercase leading-none">
@@ -62,7 +62,7 @@ const Footer = () => {
                 </div>
 
                 {/* SPONSORS (2 COLS) */}
-                <div className="col-span-1 md:col-span-2">
+                <div className="col-span-2 md:col-span-2">
                     <h3 className="text-sm uppercase tracking-widest mb-6 opacity-60">Sponsors</h3>
                     <ul className="space-y-4 text-lg md:text-xl font-medium tracking-wide">
                         <li>
@@ -90,22 +90,22 @@ const Footer = () => {
                 </div>
 
                 {/* CONTACT CARD (6 COLS) */}
-                <div className="col-span-1 md:col-span-6 flex justify-start md:justify-end">
-                    <div className="w-full md:w-[400px] h-[220px] bg-transparent border border-[#AA8D6F] text-[#AA8D6F] p-8 flex flex-col justify-between items-start rounded-sm hover:shadow-xl transition-shadow duration-300">
+                <div className="col-span-2 md:col-span-6 flex justify-start md:justify-end">
+                    <div className="w-full md:w-[400px] bg-transparent border border-[#AA8D6F] text-[#AA8D6F] p-5 md:p-8 flex flex-col justify-between items-start rounded-sm hover:shadow-xl transition-shadow duration-300 min-h-[180px] md:min-h-[220px]">
                         <div className="w-full flex justify-between items-start">
-                            <span className="uppercase text-sm tracking-widest opacity-80">Get in touch</span>
+                            <span className="uppercase text-xs md:text-sm tracking-widest opacity-80">Get in touch</span>
                             <span className="w-2 h-2 bg-[#AA8D6F] rounded-full animate-pulse"></span>
                         </div>
 
-                        <div className="text-2xl font-bold tracking-wider">
+                        <div className="text-xl md:text-2xl font-bold tracking-wider my-4 md:my-0">
                             Contact Us <span className="text-[#AA8D6F]/60">•</span>
                         </div>
 
-                        <div className="mt-auto">
-                            <div className="text-sm uppercase tracking-widest opacity-80">
+                        <div className="mt-auto w-full">
+                            <div className="text-xs md:text-sm uppercase tracking-widest opacity-80 break-all">
                                 founders@cybercom.live
                             </div>
-                            <div className="text-xs uppercase tracking-widest opacity-60 mt-1">
+                            <div className="text-[10px] md:text-xs uppercase tracking-widest opacity-60 mt-1">
                                 www.cybercom.live
                             </div>
                         </div>

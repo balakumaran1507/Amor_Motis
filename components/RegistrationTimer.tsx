@@ -55,7 +55,7 @@ const RegistrationTimer = () => {
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-[110vh] w-full flex flex-col items-center justify-start pt-32 pb-20 overflow-hidden"
+            className="relative min-h-[80vh] md:min-h-[110vh] w-full flex flex-col items-center justify-start pt-20 md:pt-32 pb-20 overflow-hidden"
             style={{ background: "linear-gradient(180deg, #f9ecf3 0%, #fdf5f8 30%, #fff8fa 50%, #fdf5f8 70%, #f9ecf3 100%)" }}
         >
             {/* Animated background roses */}
@@ -138,7 +138,7 @@ const RegistrationTimer = () => {
                         </motion.div>
 
                         {/* Timer */}
-                        <div className="flex items-start justify-center flex-nowrap z-20 relative p-4 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 w-full max-w-full overflow-x-auto md:overflow-visible no-scrollbar">
+                        <div className="flex items-start justify-center flex-nowrap z-20 relative p-2 md:p-4 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30 w-full max-w-full overflow-hidden">
                             {mounted ? (
                                 <FlipClockCountdown
                                     to={TARGET_DATE}
@@ -148,23 +148,23 @@ const RegistrationTimer = () => {
                                         fontWeight: 700,
                                         textTransform: 'uppercase',
                                         color: '#AA8D6F',
-                                        letterSpacing: isMobile ? '0.1em' : '0.2em',
+                                        letterSpacing: isMobile ? '0.05em' : '0.2em',
                                         fontFamily: 'var(--font-adieu)',
-                                        marginTop: 10
+                                        marginTop: 8
                                     }}
                                     digitBlockStyle={{
-                                        width: isMobile ? 30 : 50,
-                                        height: isMobile ? 45 : 75,
-                                        fontSize: isMobile ? 24 : 40,
+                                        width: isMobile ? 24 : 50,
+                                        height: isMobile ? 36 : 75,
+                                        fontSize: isMobile ? 20 : 40,
                                         color: '#AA8D6F',
                                         backgroundColor: 'white',
                                         fontWeight: 'bold',
                                         fontFamily: 'var(--font-adieu)',
                                         border: '1px solid rgba(170, 141, 111, 0.3)',
-                                        borderRadius: '0.5rem'
+                                        borderRadius: isMobile ? '0.25rem' : '0.5rem'
                                     }}
                                     dividerStyle={{ color: '#AA8D6F', height: 1 }}
-                                    separatorStyle={{ color: '#AA8D6F', size: 4 }}
+                                    separatorStyle={{ color: '#AA8D6F', size: isMobile ? 2 : 4 }}
                                     duration={0.5}
                                 />
                             ) : (
@@ -180,7 +180,7 @@ const RegistrationTimer = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={isTitleInView ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8, delay: 1 }}
-                            className="mt-8 md:mt-12 text-[#c17c8e] text-sm md:text-xl tracking-[0.2em] font-adieu font-medium bg-white/40 px-6 py-2 rounded-full border border-white/50"
+                            className="mt-6 md:mt-12 text-[#c17c8e] text-xs md:text-xl tracking-[0.15em] md:tracking-[0.2em] font-adieu font-medium bg-white/40 px-4 py-2 rounded-full border border-white/50"
                         >
                             February 14, 2026 • 4:30 AM UTC
                         </motion.p>

@@ -29,8 +29,19 @@ const Hero = () => {
     }, []);
 
     /* ---------------- SCROLL CONTROL ---------------- */
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
     useEffect(() => {
-        if (isMobile) return; // Disable custom scroll physics on mobile
+        if (isMobile) {
+            // On mobile, bind progress directly to scroll position
+            const unsubscribe = scrollYProgress.on("change", (v) => {
+                progress.set(v);
+            });
+            return unsubscribe;
+        }
 
         const clamp = (v: number, min = 0, max = 1) =>
             Math.min(Math.max(v, min), max);
@@ -111,7 +122,7 @@ const Hero = () => {
             window.removeEventListener("wheel", onWheel);
             if (raf.current) cancelAnimationFrame(raf.current);
         };
-    }, [progress, isMobile]);
+    }, [progress, isMobile, scrollYProgress]);
 
 
 
@@ -176,7 +187,7 @@ const Hero = () => {
                         y: yLeft,
                         translateX: isMobile ? "-90%" : "-50%", // 🔧 Manual Mobile Adjust: Shift Left
                         translateY: "-50%",
-                        scale: isMobile ? 1.15 : 1.1,
+                        scale: isMobile ? 1.0 : 1.1,
                     }}
                 >
                     <Image
@@ -186,7 +197,7 @@ const Hero = () => {
                         height={800}
                         priority
                         unoptimized
-                        className={isMobile ? "w-[85vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
+                        className={isMobile ? "w-[60vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
                         style={{ height: "auto" }}
                     />
                 </motion.div>
@@ -201,7 +212,7 @@ const Hero = () => {
                         y: yRight,
                         translateX: isMobile ? "-25%" : "50%", // 🔧 Manual Mobile Adjust: Shift Right
                         translateY: "-50%",
-                        scale: isMobile ? 1.15 : 1.1,
+                        scale: isMobile ? 1.0 : 1.1,
                     }}
                 >
                     <Image
@@ -211,20 +222,20 @@ const Hero = () => {
                         height={800}
                         priority
                         unoptimized
-                        className={isMobile ? "w-[85vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
+                        className={isMobile ? "w-[60vw] h-auto object-contain" : "w-[500px] h-auto object-contain"}
                         style={{ height: "auto" }}
                     />
                 </motion.div>
 
                 {/* HERO TEXT */}
                 <motion.div
-                    className="relative z-0 text-center px-6"
+                    className="relative z-0 text-center px-4"
                     style={{ opacity: textOpacity, y: textY }}
                 >
-                    <h1 className="text-2xl sm:text-3xl md:text-7xl lg:text-8xl font-bold font-adieu tracking-[0.15em] md:tracking-[0.22em] uppercase text-[#AA8D6F]">
+                    <h1 className="text-xl sm:text-3xl md:text-7xl lg:text-8xl font-bold font-adieu tracking-[0.10em] md:tracking-[0.22em] uppercase text-[#AA8D6F]">
                         AMOR MORTIS
                     </h1>
-                    <p className="text-xs sm:text-sm md:text-lg font-medium text-[#AA8D6F] font-adieu tracking-[0.2em] md:tracking-[0.3em] uppercase mt-4 md:mt-6">
+                    <p className="text-[10px] sm:text-sm md:text-lg font-medium text-[#AA8D6F] font-adieu tracking-[0.15em] md:tracking-[0.3em] uppercase mt-2 md:mt-6">
                         Love Until it kills you
                     </p>
 

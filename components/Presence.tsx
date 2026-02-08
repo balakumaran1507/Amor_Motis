@@ -51,7 +51,7 @@ const Presence = () => {
                     className="absolute -bottom-10 -right-10 w-[50vw] h-[50vw] md:-bottom-20 md:-right-20 md:w-[600px] md:h-[600px]"
                 >
                     <Image
-                        src="/roses_cluster.png"
+                        src="/roses_cluster.webp"
                         alt=""
                         fill
                         sizes="(max-width: 768px) 50vw, 33vw"
@@ -99,7 +99,8 @@ const Presence = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.8, delay: 0.1 }}
-                    className="text-[#AA8D6F]/60 text-xs md:text-sm tracking-[0.5em] uppercase font-adieu mb-6"
+                    className="!text-[#c17c8e] text-xs md:text-sm tracking-[0.5em] uppercase font-adieu mb-6"
+                    style={{ color: "#c17c8e" }}
                 >
                     A Valentine&apos;s Day CTF Experience
                 </motion.span>
@@ -113,7 +114,8 @@ const Presence = () => {
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-                            className="text-[#AA8D6F] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            className="!text-[#c17c8e] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            style={{ color: "#c17c8e" }}
                         >
                             {"CYBER".split("").map((letter, i) => (
                                 <motion.span
@@ -125,7 +127,8 @@ const Presence = () => {
                                         duration: 0.5,
                                         delay: 0.1 + i * 0.05,
                                     }}
-                                    className="inline-block"
+                                    className="inline-block !text-[#c17c8e]"
+                                    style={{ color: "#c17c8e" }}
                                 >
                                     {letter}
                                 </motion.span>
@@ -140,7 +143,8 @@ const Presence = () => {
                             whileInView={{ y: 0, opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                            className="text-[#AA8D6F] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            className="!text-[#c17c8e] text-4xl sm:text-5xl md:text-8xl lg:text-[12rem] font-adieu font-bold tracking-tight leading-none"
+                            style={{ color: "#c17c8e" }}
                         >
                             {"COM".split("").map((letter, i) => (
                                 <motion.span
@@ -152,7 +156,8 @@ const Presence = () => {
                                         duration: 0.5,
                                         delay: 0.2 + i * 0.05,
                                     }}
-                                    className="inline-block"
+                                    className="inline-block !text-[#c17c8e]"
+                                    style={{ color: "#c17c8e" }}
                                 >
                                     {letter}
                                 </motion.span>
@@ -182,7 +187,7 @@ const Presence = () => {
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 1.5, delay: 0.9, ease: "easeOut" }}
                     >
-                        <span className="text-[#c17c8e] text-xl md:text-4xl uppercase font-adieu">
+                        <span className="!text-[#c17c8e] text-xl md:text-4xl uppercase font-adieu font-bold" style={{ color: "#c17c8e" }}>
                             PRESENTS
                         </span>
                     </motion.div>
