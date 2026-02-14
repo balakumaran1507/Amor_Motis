@@ -21,11 +21,12 @@ const Navbar = () => {
         { name: "Home", href: "#home" },
         { name: "Presence", href: "#presence" },
         { name: "Countdown", href: "#register" },
-        { name: "Registrations", href: "#stages" },
+        { name: "Enter Infra", href: "https://infra.cybercom.live/" },
         { name: "Contact", href: "#footer" },
     ];
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith("http")) return; // Don't prevent default for external links
         e.preventDefault();
         setIsMobileMenuOpen(false);
         const targetId = href.replace("#", "");
@@ -94,8 +95,7 @@ const Navbar = () => {
                             </motion.a>
 
                             <motion.a
-                                href="#stages"
-                                onClick={(e) => handleNavClick(e, "#stages")}
+                                href="https://infra.cybercom.live/"
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.6 }}
@@ -107,13 +107,13 @@ const Navbar = () => {
                                 <div className="relative flex items-center justify-center min-w-[80px]">
                                     {/* Layer 1: Normal Font */}
                                     <span className="text-xs font-adieu uppercase tracking-widest text-[#c17c8e] transition-all duration-500 group-hover:opacity-0 group-hover:-translate-y-2 group-hover:blur-[2px]">
-                                        Enter CTF
+                                        Enter Infra
                                     </span>
 
                                     {/* Layer 2: Cursive Font */}
                                     <span className="absolute text-xl text-[#c17c8e] transition-all duration-500 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0"
                                         style={{ fontFamily: 'var(--font-pinyon), cursive' }}>
-                                        Register
+                                        Infra
                                     </span>
                                 </div>
                             </motion.a>

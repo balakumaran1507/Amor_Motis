@@ -19,7 +19,7 @@ const Footer = () => {
                             { name: "Home", href: "#home" },
                             { name: "Presence", href: "#presence" },
                             { name: "Countdown", href: "#register" },
-                            { name: "Registrations", href: "#stages" }
+                            { name: "Enter Infra", href: "https://infra.cybercom.live/" }
                         ].map((item) => (
                             <li key={item.name}>
                                 <Link href={item.href} className="cursor-pointer hover:opacity-70 transition-opacity uppercase">

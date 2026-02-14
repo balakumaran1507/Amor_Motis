@@ -1,73 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { auth, db } from "@/lib/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 const Stages = () => {
     const [isMobile, setIsMobile] = React.useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // Form State
-    const [formData, setFormData] = useState({ username: "", email: "", password: "" });
-    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [errorMessage, setErrorMessage] = useState("");
-
-    const handleRegister = async (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Starting registration process...");
-        setStatus("loading");
-        setErrorMessage("");
-
-        try {
-            console.log("Creating user with email...");
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-            const user = userCredential.user;
-            console.log("User created:", user.uid);
-
-            // Update Auth Profile
-            console.log("Updating profile...");
-            await updateProfile(user, { displayName: formData.username });
-            console.log("Profile updated.");
-
-            // Save to Firestore with timeout fallback
-            console.log("Saving to Firestore...");
-            const saveToFirestore = setDoc(doc(db, "users", user.uid), {
-                uid: user.uid,
-                username: formData.username,
-                email: formData.email,
-                createdAt: new Date().toISOString()
-            });
-
-            // Fallback: If Firestore takes >4s, assume success (optimistic UI) since Auth worked
-            const timeoutPromise = new Promise((resolve) => setTimeout(() => resolve("timeout"), 4000));
-
-            const result = await Promise.race([saveToFirestore, timeoutPromise]);
-
-            if (result === "timeout") {
-                console.warn("Firestore write timed out (optimistic success).");
-            } else {
-                console.log("Firestore save successful.");
-            }
-
-            setStatus("success");
-            console.log("Status set to success.");
-            // Close after success
-            setTimeout(() => {
-                setIsModalOpen(false);
-                setStatus("idle");
-                setFormData({ username: "", email: "", password: "" });
-            }, 2000);
-
-        } catch (error: any) {
-            console.error("Registration Error:", error);
-            setStatus("error");
-            setErrorMessage(error.message || "Something went wrong.");
-        }
-    };
 
     React.useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -126,20 +64,20 @@ const Stages = () => {
                 </motion.div>
 
                 {/* BUTTON - PROFESSIONAL & ELEGANT WITH ICON */}
-                <motion.button
-                    onClick={() => setIsModalOpen(true)}
+                <motion.a
+                    href="https://infra.cybercom.live/"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="mt-10 group relative px-10 py-4 overflow-hidden rounded-full border border-[#AA8D6F] transition-all duration-300"
+                    className="mt-10 group relative px-10 py-4 overflow-hidden rounded-full border border-[#AA8D6F] transition-all duration-300 block"
                 >
                     {/* Background Slide Effect */}
                     <div className="absolute inset-0 w-full h-full bg-[#AA8D6F] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
 
                     <span className="relative z-10 flex items-center gap-4 font-adieu text-[#AA8D6F] group-hover:text-[#f9ecf3] text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-colors duration-300">
                         <span className="text-sm">✦</span>
-                        Register Now
+                        Enter Infra
                     </span>
-                </motion.button>
+                </motion.a>
             </div>
 
             {/* PILLAR LEFT */}
@@ -304,114 +242,6 @@ const Stages = () => {
             {/* Bottom gradient */}
             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#f9ecf3] via-[#f9ecf3]/50 to-transparent z-1 pointer-events-none" />
 
-            {/* Registration Modal */}
-            <AnimatePresence>
-                {isModalOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md"
-                        onClick={() => setIsModalOpen(false)}
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
-                            animate={{ scale: 1, opacity: 1, y: 0 }}
-                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            onClick={(e) => e.stopPropagation()}
-                            className="bg-white/80 backdrop-blur-xl border border-white/60 p-8 rounded-3xl shadow-2xl w-full max-w-md relative overflow-hidden"
-                            style={{ background: "linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,245,250,0.8))" }}
-                        >
-                            {/* Close Button */}
-                            <button
-                                onClick={() => setIsModalOpen(false)}
-                                className="absolute top-4 right-4 text-[#c17c8e] hover:text-[#AA8D6F] transition-colors"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-
-                            <h3 className="text-2xl font-adieu text-[#c17c8e] text-center mb-6 tracking-wider">
-                                {status === "success" ? "Welcome Aboard" : "Register"}
-                            </h3>
-
-                            {status === "success" ? (
-                                <div className="text-center text-[#AA8D6F] font-adieu py-10">
-                                    <p>Registration Successful!</p>
-                                    <p className="text-sm mt-2 opacity-70">Redirecting you to the void...</p>
-                                </div>
-                            ) : (
-                                <form className="flex flex-col gap-5" onSubmit={handleRegister}>
-                                    <div className="space-y-4">
-                                        {/* Username Input */}
-                                        <div className="group">
-                                            <label className="block text-[#AA8D6F] text-xs font-adieu uppercase tracking-widest mb-1.5 ml-1">Username</label>
-                                            <input
-                                                type="text"
-                                                placeholder="Enter your username"
-                                                value={formData.username}
-                                                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                                                required
-                                                className="w-full bg-white/50 border border-[#c17c8e]/30 rounded-xl px-5 py-3 text-[#c17c8e] placeholder-[#c17c8e]/40 font-adieu text-sm focus:outline-none focus:border-[#c17c8e] focus:bg-white/80 transition-all duration-300"
-                                            />
-                                        </div>
-
-                                        {/* Email Input */}
-                                        <div className="group">
-                                            <label className="block text-[#AA8D6F] text-xs font-adieu uppercase tracking-widest mb-1.5 ml-1">Email Address</label>
-                                            <input
-                                                type="email"
-                                                placeholder="Enter your email"
-                                                value={formData.email}
-                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                required
-                                                className="w-full bg-white/50 border border-[#c17c8e]/30 rounded-xl px-5 py-3 text-[#c17c8e] placeholder-[#c17c8e]/40 font-adieu text-sm focus:outline-none focus:border-[#c17c8e] focus:bg-white/80 transition-all duration-300"
-                                            />
-                                        </div>
-
-                                        {/* Password Input */}
-                                        <div className="group">
-                                            <label className="block text-[#AA8D6F] text-xs font-adieu uppercase tracking-widest mb-1.5 ml-1">Password</label>
-                                            <input
-                                                type="password"
-                                                placeholder="Create a password"
-                                                value={formData.password}
-                                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                                required
-                                                className="w-full bg-white/50 border border-[#c17c8e]/30 rounded-xl px-5 py-3 text-[#c17c8e] placeholder-[#c17c8e]/40 font-adieu text-sm focus:outline-none focus:border-[#c17c8e] focus:bg-white/80 transition-all duration-300"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Error Message */}
-                                    {status === "error" && (
-                                        <div className="text-red-500 text-xs font-adieu text-center">
-                                            {errorMessage}
-                                        </div>
-                                    )}
-
-                                    {/* Submit Button */}
-                                    <motion.button
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        disabled={status === "loading"}
-                                        className={`relative w-full py-4 bg-gradient-to-r from-[#c17c8e] to-[#AA8D6F] text-white text-sm tracking-[0.2em] uppercase font-adieu rounded-xl overflow-hidden shadow-lg mt-2 ${status === "loading" ? "opacity-70 cursor-wait" : ""}`}
-                                        type="submit"
-                                    >
-                                        <span className="relative z-10">{status === "loading" ? "Processing..." : "Sign Up"}</span>
-                                        <motion.div
-                                            animate={{ x: [-400, 400] }}
-                                            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-                                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                                        />
-                                    </motion.button>
-                                </form>
-                            )}
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </section>
     );
 };
