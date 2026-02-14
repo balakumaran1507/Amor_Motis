@@ -58,6 +58,14 @@ const Footer = () => {
                                 <span className="text-[10px] md:text-xs opacity-50 lowercase mt-1">@CybercomLive</span>
                             </div>
                         </li>
+                        <li>
+                            <div className="flex flex-col">
+                                <Link href="https://discord.gg/ZJBX4N7rAK" target="_blank" className="cursor-pointer hover:opacity-70 transition-opacity uppercase leading-none">
+                                    Discord
+                                </Link>
+                                <span className="text-[10px] md:text-xs opacity-50 lowercase mt-1">Join Server</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 
